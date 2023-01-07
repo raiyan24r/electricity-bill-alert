@@ -6,6 +6,7 @@ function handle(req, res) {
   if (req.method === "GET") {
     webhookService.verifyCallback(req, res);
   } else if (req.method === "POST") {
+    
     console.log("msg received");
     axios
       .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
