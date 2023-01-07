@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 app.post("/log", (req, res) => {
   console.log("-----------------------------------");
   console.log(JSON.stringify(req.body, null, "\t"));
-  return;
+  res.send("received!!!!!!");
 });
 
 app.use("/api/v1", apiRouter);
