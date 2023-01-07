@@ -11,7 +11,7 @@ function handle(req, res) {
     axios
       .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
       .then(function (response) {
-        res.send(error);
+        res.send(response);
       })
       .catch(function (error) {
         res.send(error);
