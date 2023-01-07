@@ -1,5 +1,5 @@
 const webhookService = require("../services/webhook.service");
-// const axios = require("axios").default;
+const axios = require("axios").default;
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -8,11 +8,11 @@ function handle(req, res) {
     webhookService.verifyCallback(req, res);
   } else if (req.method === "POST") {
     // console.log(req.body);
-    // axios
-    //   .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
-    //   .then(function (response) {
-    //     // console.log(response);
-    //   });
+    axios
+      .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
+      .then(function (response) {
+        // console.log(response);
+      });
 
     console.log("POST");
     res.sendStatus(200);
