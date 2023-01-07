@@ -22,6 +22,12 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
+app.post("/log", (req, res) => {
+  console.log("-----------------------------------");
+  console.log(JSON.stringify(req.body, null, "\t"));
+  return;
+});
+
 app.use("/api/v1", apiRouter);
 app.use("/webhook/v1", webhookRouter);
 
