@@ -40,6 +40,7 @@ const User = sequelize.define(
   },
   {
     paranoid: true,
+    tableName: "users",
   }
 );
 
