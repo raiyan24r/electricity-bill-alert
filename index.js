@@ -7,8 +7,8 @@ const apiRouter = require("./src/routes/api.route");
 const webhookRouter = require("./src/routes/webhook.route");
 const dotenv = require("dotenv");
 
-// const User = require("./src/models/user");
-// const Meter = require("./src/models/meter");
+const User = require("./src/models/user");
+const Meter = require("./src/models/meter");
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -34,14 +34,14 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// sequelize
-//   .sync()
-//   .then(() => {
-//     console.log("Synced db.");
-//   })
-//   .catch((err) => {
-//     console.log("Failed to sync db: " + err.message);
-//   });
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
 
 app.listen(port, () => {
   // console.log(process.env.ACCESS_TOKEN);
