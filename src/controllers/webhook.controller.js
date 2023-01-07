@@ -6,11 +6,11 @@ function handle(req, res) {
   if (req.method === "GET") {
     webhookService.verifyCallback(req, res);
   } else if (req.method === "POST") {
-    // console.log(req.body);
+    console.log("msg received");
     axios
       .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
       .then(function (response) {
-        // console.log(response);
+        console.log(response);
       });
     let body = req.body;
     if (body.object === "page") {
