@@ -18,14 +18,14 @@ function handle(req, res) {
       });
     res.send("dfdf");
     let body = req.body;
-    if (body.object === "page") {
-      // console.log("11");
-      messengerAppService.sendTextMessage(
-        process.env.TEST_PSID,
-        "Hello, world!"
-      );
-      messengerAppService.sendAlertNotificationRequest(process.env.TEST_PSID);
-    }
+    // if (body.object === "page") {
+    //   console.log("11");
+    //   messengerAppService.sendTextMessage(
+    //     process.env.TEST_PSID,
+    //     "Hello, world!"
+    //   );
+    //   messengerAppService.sendAlertNotificationRequest(process.env.TEST_PSID);
+    // }
 
     res.sendStatus(200);
   }
