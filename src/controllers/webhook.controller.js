@@ -11,11 +11,12 @@ function handle(req, res) {
     axios
       .post(process.env.LOCAL_LOG_ROUTE + "/log", req.body)
       .then(function (response) {
-        console.log(response);
+        res.send(error);
       })
       .catch(function (error) {
-        console.log(error);
+        res.send(error);
       });
+    res.send("dfdf");
     let body = req.body;
     if (body.object === "page") {
       // console.log("11");
