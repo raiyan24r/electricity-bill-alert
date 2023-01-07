@@ -1,4 +1,4 @@
-const axios = require("axios").default;
+const axios = require("axios");
 const dotenv = require("dotenv").config();
 
 const http = axios.create({
