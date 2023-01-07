@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const sequelize = require("./src/utils/db").sequelize;
@@ -5,12 +6,11 @@ const app = express();
 const port = 3000;
 const apiRouter = require("./src/routes/api.route");
 const webhookRouter = require("./src/routes/webhook.route");
-const dotenv = require("dotenv");
 
 const User = require("./src/models/user");
 const Meter = require("./src/models/meter");
 
-dotenv.config();
+// dotenv.config();
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({

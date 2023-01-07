@@ -1,7 +1,6 @@
 const webhookService = require("../services/webhook.service");
+const messengerAppService = require("../services/messengerApp.service");
 const axios = require("axios").default;
-const dotenv = require("dotenv");
-dotenv.config();
 
 function handle(req, res) {
   if (req.method === "GET") {
@@ -13,8 +12,16 @@ function handle(req, res) {
       .then(function (response) {
         // console.log(response);
       });
+    let body = req.body;
+    if (body.object === "page") {
+      // console.log("11");
+      messengerAppService.sendTextMessage(
+        process.env.TEST_PSID,
+        "Hello, world!"
+      );
+      messengerAppService.sendAlertNotificationRequest(process.env.TEST_PSID);
+    }
 
-    console.log("POST");
     res.sendStatus(200);
   }
 }
