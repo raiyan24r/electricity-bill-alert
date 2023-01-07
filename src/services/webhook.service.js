@@ -1,3 +1,5 @@
+const dotenv = require("dotenv").config();
+
 function verifyCallback(req, res) {
   if (
     req.query["hub.mode"] === "subscribe" &&
