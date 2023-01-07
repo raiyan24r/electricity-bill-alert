@@ -1,4 +1,5 @@
 const http = require("../utils/http");
+const dotenv = require("dotenv").config();
 
 async function getUserInfo($psid) {
   return await http.get(

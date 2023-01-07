@@ -1,6 +1,7 @@
 const webhookService = require("../services/webhook.service");
 const messengerAppService = require("../services/messengerApp.service");
 const axios = require("axios").default;
+const dotenv = require("dotenv").config();
 
 function handle(req, res) {
   if (req.method === "GET") {
