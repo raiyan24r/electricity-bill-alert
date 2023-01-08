@@ -36,6 +36,7 @@ function handle(req, res) {
 
     res.sendStatus(200);
   }
+  res.sendStatus(200);
 }
 
 module.exports = {
