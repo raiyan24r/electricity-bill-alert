@@ -1,4 +1,4 @@
-const http = require("../utils/http");
+const http = require("../utils/http").http;
 const dotenv = require("dotenv").config();
 
 async function getUserInfo($psid) {
@@ -53,6 +53,7 @@ async function sendAlertNotificationRequest($psid) {
     response
   );
 }
+
 
 module.exports = {
   getUserInfo,
