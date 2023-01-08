@@ -40,14 +40,14 @@ app.use((err, req, res, next) => {
   return;
 });
 
-sequelize
-  .sync()
-  .then(() => {
-    console.log("Synced db.");
-  })
-  .catch((err) => {
-    console.log("Failed to sync db: " + err.message);
-  });
+// sequelize
+//   .sync()
+//   .then(() => {
+//     console.log("Synced db.");
+//   })
+//   .catch((err) => {
+//     console.log("Failed to sync db: " + err.message);
+//   });
 
 app.listen(port, () => {
   // console.log(process.env.ACCESS_TOKEN);
