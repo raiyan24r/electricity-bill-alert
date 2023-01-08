@@ -4,6 +4,8 @@ const logHttp = require("../utils/http").logHttp;
 const dotenv = require("dotenv").config();
 
 function handle(req, res) {
+  res.sendStatus(200);
+  return;
   try {
     if (req.method === "GET") {
       webhookService.verifyCallback(req, res);
