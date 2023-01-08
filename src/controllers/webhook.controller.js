@@ -4,6 +4,8 @@ const logHttp = require("../utils/http").logHttp;
 const dotenv = require("dotenv").config();
 
 function handle(req, res) {
+  let text = req.body.entry[0].messaging[0].message.text;
+  console.log("text: ", text);
   res.sendStatus(200);
   return;
   try {
