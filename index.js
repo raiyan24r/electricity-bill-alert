@@ -20,10 +20,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  logger.info({
-    message: "ok",
-    sds: "dfdf",
-  });
+  logger.info("hello");
   res.json({ message: "ok" });
 });
 
