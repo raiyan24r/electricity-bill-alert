@@ -37,6 +37,19 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
+    bot_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
+    notification_token: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    notification_expiry: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     paranoid: true,

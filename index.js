@@ -9,6 +9,7 @@ const webhookRouter = require("./src/routes/webhook.route");
 
 const User = require("./src/models/user");
 const Meter = require("./src/models/meter");
+const logger = require("./src/utils/logger");
 
 // dotenv.config();
 app.use(bodyParser.json());
@@ -19,13 +20,11 @@ app.use(
 );
 
 app.get("/", (req, res) => {
+  logger.info({
+    message: "ok",
+    sds: "dfdf",
+  });
   res.json({ message: "ok" });
-});
-
-app.post("/log", (req, res) => {
-  console.log("-----------------------------------");
-  console.log(JSON.stringify(req.body, null, "\t"));
-  res.send("received!!!!!!");
 });
 
 app.use("/api/v1", apiRouter);
@@ -40,14 +39,14 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// sequelize
-//   .sync()
-//   .then(() => {
-//     console.log("Synced db.");
-//   })
-//   .catch((err) => {
-//     console.log("Failed to sync db: " + err.message);
-//   });
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
 
 app.listen(port, () => {
   // console.log(process.env.ACCESS_TOKEN);

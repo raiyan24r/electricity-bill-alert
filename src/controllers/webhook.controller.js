@@ -2,24 +2,44 @@ const webhookService = require("../services/webhook.service");
 const messengerAppService = require("../services/messengerApp.service");
 const logHttp = require("../utils/http").logHttp;
 const dotenv = require("dotenv").config();
+const electricBillService = require("../services/electricityBill.service");
 
-function handle(req, res) {
+async function handle(req, res) {
   if (req.method === "GET") {
     webhookService.verifyCallback(req, res);
   } else if (req.method === "POST") {
     console.log("*************POST**************");
-    logHttp.post(process.env.LOCAL_LOG_ROUTE + "/log", req.body);
     let body = req.body;
     switch (body.object) {
       case "page":
         let text = body.entry[0]?.messaging[0]?.message?.text;
         let optin = body.entry[0]?.messaging[0]?.optin;
-        if (text !== undefined) {
+        let postback = body.entry[0]?.messaging[0]?.postback;
+
+
+        
+        if (postback !== undefined) {
+          const payload = postback.payload;
+          if (payload === "get_started") {
+            let psid = body.entry[0].messaging[0].sender?.id;
+            await webhookService.handleGetStarted(psid);
+            console.log(33);
+          }
+        } else if (text !== undefined) {
           console.log("text: " + text);
-          // messengerAppService.sendTextMessage(
-          //   process.env.TEST_PSID,
-          //   "You said " + text
-          // );
+          const balanceData = await electricBillService.getBalanceByAccount(
+            text
+          );
+
+          messengerAppService.sendTextMessage(
+            process.env.TEST_PSID,
+            "Balance : " +
+              balanceData.balance +
+              " Tk\nCurrent Month Consumption : " +
+              balanceData.currentMonthConsumption +
+              " Tk\nReading Time : " +
+              balanceData.readingTime
+          );
         } else if (optin !== undefined) {
           if (optin.notification_messages_status === "STOP_NOTIFICATIONS") {
             console.log("STOP_NOTIFICATIONS");
@@ -29,8 +49,9 @@ function handle(req, res) {
           ) {
             console.log("RESUME_NOTIFICATIONS");
             //alert flag enable
-          } else if (optin.notification_messages_status === "ALLOWED") {
+          } else if ("notification_messages_status" in optin === false) {
             console.log("ALLOWED");
+            console.log("notification_messages_status" in optin === false);
             //alert flag enable
           }
         } else {

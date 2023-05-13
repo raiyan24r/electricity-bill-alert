@@ -1,4 +1,6 @@
 const dotenv = require("dotenv").config();
+const messengerAppService = require("./messengerApp.service");
+const userService = require("./user.service");
 
 function verifyCallback(req, res) {
   if (
@@ -13,6 +15,28 @@ function verifyCallback(req, res) {
   }
 }
 
+function allowNotification($psid) {}
+
+function stopNotifications($psid) {}
+
+function resumeNotifications($psid) {}
+
+function handleText($psid, $text) {}
+
+async function handleGetStarted($psid) {
+  const userInfo = await messengerAppService.getUserInfo($psid);
+  console.log(userInfo);
+  userService.createNew(userInfo);
+
+  // create user in db
+  // send welcome message
+}
+
 module.exports = {
   verifyCallback,
+  allowNotification,
+  stopNotifications,
+  resumeNotifications,
+  handleText,
+  handleGetStarted,
 };

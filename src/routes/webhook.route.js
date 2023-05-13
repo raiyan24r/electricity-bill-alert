@@ -1,6 +1,6 @@
 const express = require("express");
-const webhookController = require("../controllers/webhook.controller");
+const updateController = require("../controllers/update.controller");
 const router = express.Router();
 
-router.all("/receive", webhookController.handle);
+router.all("/receive", updateController.handle);
 module.exports = router;

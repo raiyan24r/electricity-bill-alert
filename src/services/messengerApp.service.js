@@ -2,11 +2,13 @@ const http = require("../utils/http").http;
 const dotenv = require("dotenv").config();
 
 async function getUserInfo($psid) {
-  return await http.get(
+  const info = await http.get(
     $psid +
       "?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=" +
-      token
+      process.env.ACCESS_TOKEN
   );
+  console.log("info: ", info.data);
+  return info.data;
 }
 
 async function sendTextMessage($psid, $text) {
@@ -53,7 +55,6 @@ async function sendAlertNotificationRequest($psid) {
     response
   );
 }
-
 
 module.exports = {
   getUserInfo,
